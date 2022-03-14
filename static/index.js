@@ -1,7 +1,7 @@
 
 
 function main() {
-	console.log("test_run");	
+	alert("run");	
 };
 
 window.onload = main();
