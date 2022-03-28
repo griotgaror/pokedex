@@ -1,7 +1,73 @@
 
 
-function main() {
-	alert("run");	
+window.onload = () => {
+	const LIMIT = 151;
+	const POKEMON_API = "https://pokeapi.co/api/v2/pokemon/" + "?limit=" + LIMIT;
+
+	//fetch api
+	let response = fetch(POKEMON_API)
+		.then(response => response.json())
+		.then(all_pokemon => {
+			
+			all_pokemon.results.forEach(pokemon_data => {
+
+				//fetch pokemon data
+				response = fetch(pokemon_data.url)
+					.then(response => response.json())
+					.then(pokedata => {
+
+						// create pokemon data
+						const pokemon = new Pokemon(pokedata);
+					})
+			});
+		});
+		
+	const POKEMON_LIST = document.getElementById("pokedex").childNodes;
+	const SEARCHBAR = document.getElementById("searchbar");
+	
+	SEARCHBAR.oninput = key => {
+		let input = SEARCHBAR.value;
+		console.log("run");
+
+		POKEMON_LIST.forEach(pokemon => {
+			if (input) {
+
+				if (pokemon.id.charAt(0) == input.charAt(0)) {	
+					console.log(pokemon.id);				
+					for(let i = 0; i < input.length; i++) {
+
+						pokemon.style.display = (pokemon.id.charAt(i) == input.charAt(i)) ? "flex" : "none";
+					}
+
+				} else { pokemon.style.display = "none"; }
+
+			} else { pokemon.style.display = "flex"};
+		});
+	};
 };
 
-window.onload = main();
+
+class Pokemon {
+	constructor(pokedata) {
+		this.pkm_container = document.createElement("div");
+		this.pkm_container.className = "pokemon";
+		this.pkm_container.id = pokedata.name;
+
+		this.sprite = new Image();
+		this.sprite.id = "pkm_sprite";
+		this.sprite.src = pokedata.sprites.front_default;
+
+		this.pkm_name_container = document.createElement("div");
+		this.pkm_name_container.id = "pkm_name_container";
+
+		this.name = document.createElement("h1");
+		this.name.id = "pkm_name";
+		this.name.textContent = pokedata.name;
+
+		this.pokedex = document.getElementById("pokedex");
+		this.pokedex.append(this.pkm_container);
+		this.pkm_container.append(this.sprite);
+		this.pkm_container.append(this.pkm_name_container);
+		this.pkm_name_container.append(this.name);
+	}
+}

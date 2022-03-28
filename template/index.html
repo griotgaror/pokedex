@@ -5,10 +5,15 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="/static/index.css">
         <script type="module" src={{ url_for("static", filename="index.js") }} ></script>
+        <!-- <script src="jquery-3.6.0.min.js"></script> -->
     </head>
 
     <body>
-
-        
+        <div id="main_content">
+            <div id="titlebar">
+                <input id="searchbar" type="text" placeholder="search..">
+            </div>
+            <div id="pokedex"></div>
+        </div>
     </body>
 </html>

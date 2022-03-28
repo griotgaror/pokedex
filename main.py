@@ -1,9 +1,9 @@
-from flask import Flask, render_template, url_for
+from distutils.log import debug
+from flask import Flask, render_template
 
 
 app = Flask(__name__, template_folder= "template");
-host = "0.0.0.0";
-port = 5050;
+
 
 @app.route("/")
 def index():
@@ -11,4 +11,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(host, port, debug = True);
+    app.run(host="0.0.0.0", port=5050, debug=True);
