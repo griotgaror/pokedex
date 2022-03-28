@@ -8,7 +8,7 @@ window.onload = () => {
 	let response = fetch(POKEMON_API)
 		.then(response => response.json())
 		.then(all_pokemon => {
-			
+
 			all_pokemon.results.forEach(pokemon_data => {
 
 				//fetch pokemon data
@@ -17,6 +17,7 @@ window.onload = () => {
 					.then(pokedata => {
 
 						// create pokemon data
+						// console.log(pokedata.types[0].type.name)
 						const pokemon = new Pokemon(pokedata);
 					})
 			});
@@ -27,20 +28,20 @@ window.onload = () => {
 	
 	SEARCHBAR.oninput = key => {
 		let input = SEARCHBAR.value;
-		console.log("run");
 
 		POKEMON_LIST.forEach(pokemon => {
 			if (input) {
 
+				//filter all pokemon with char 1 = input char 1
 				if (pokemon.id.charAt(0) == input.charAt(0)) {	
-					console.log(pokemon.id);				
-					for(let i = 0; i < input.length; i++) {
 
+					for(let i = 0; i < input.length; i++) {
 						pokemon.style.display = (pokemon.id.charAt(i) == input.charAt(i)) ? "flex" : "none";
 					}
 
 				} else { pokemon.style.display = "none"; }
 
+				// show all pokemon
 			} else { pokemon.style.display = "flex"};
 		});
 	};
@@ -54,6 +55,7 @@ class Pokemon {
 		this.pkm_container.id = pokedata.name;
 
 		this.sprite = new Image();
+		this.sprite.className = pokedata.types[0].type.name;
 		this.sprite.id = "pkm_sprite";
 		this.sprite.src = pokedata.sprites.front_default;
 
@@ -67,6 +69,7 @@ class Pokemon {
 		this.pokedex = document.getElementById("pokedex");
 		this.pokedex.append(this.pkm_container);
 		this.pkm_container.append(this.sprite);
+		// this.pkm_container.append(this.pkm_type_container);
 		this.pkm_container.append(this.pkm_name_container);
 		this.pkm_name_container.append(this.name);
 	}

@@ -48,23 +48,34 @@ html, body {
 }
 
 .pokemon {
-	background: rgb(20, 20, 20);
+	background: rgb(30, 30, 30);
 	border-radius: 5px;
-	height: 230px;
-	width: 220px;
+	height: 280px;
+	width: 260px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
 #pkm_sprite {
-	width: 95%;
-	height: 80%
+	width: 100%;
+	height: 200px;
+	border-radius: 4px;
+}
+
+#pkm_type_container {
+	width: 100%;
+	height: 50px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	grid-row-gap: 5px;
+	align-items: center;
 }
 
 #pkm_name_container {
-	width: 95%;
-	flex-grow: 1;
+	width: 100%;
+	height: 30px;
 }
 
 #pkm_name {
@@ -72,4 +83,76 @@ html, body {
 	color: white;
 	text-align: center;
 	font-size: 22px;
+}
+
+.grass {
+	background: rgb(0, 220, 0);
+}
+
+.fire {
+	background: rgb(220, 0, 0);
+}
+
+.water {
+	background: rgb(0, 0, 220);
+}
+
+.normal {
+	background: burlywood;
+}
+
+.electric {
+	background: yellow;
+}
+
+.ice {
+	background: rgb(100, 100, 250);
+}
+
+.ground {
+	background:sienna;
+}
+
+.flying {
+	background: lightblue;
+}
+
+.poison {
+	background: rebeccapurple;
+}
+
+.fighting {
+	background: brown;
+}
+
+.psychic {
+	background: palevioletred;
+}
+
+.dark {
+	background: darkslategrey;
+}
+
+.rock {
+	background: darkgoldenrod;
+}
+
+.bug {
+	background: greenyellow;
+}
+
+.ghost {
+	background: darkblue;
+}
+
+.steel {
+	background: grey;
+}
+
+.dragon {
+	background: blue;
+}
+
+.fairy {
+	background: pink
 }
